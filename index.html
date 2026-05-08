@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古民家歯科医院 | 築200年の歴史が紡ぐ、安心の歯医者</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本設定 */
+        :root {
+            --dark-brown: #3e2723; /* 古材の色 */
+            --shikkui-white: #fdfaf5; /* 漆喰の色 */
+            --moss-green: #556b2f; /* 苔の色 */
+            --text-black: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background-color: var(--shikkui-white);
+            color: var(--text-black);
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ヘッダー */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(253, 250, 245, 0.9);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark-brown);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            font-size: 0.9rem;
+        }
+
+        /* メインビジュアル */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1590059510123-5e7834241e3d?auto=format&fit=crop&q=80&w=2000'); /* イメージ画像：古民家風 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10%;
+        }
+
+        .hero-copy {
+            writing-mode: vertical-rl; /* 縦書き */
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px 20px;
+            font-size: 2rem;
+            color: var(--dark-brown);
+            letter-spacing: 0.5em;
+            border: 1px solid var(--dark-brown);
+        }
+
+        /* コンテンツ幅制限 */
+        .container {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--dark-brown);
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: var(--moss-green);
+            margin: 15px auto 0;
+        }
+
+        /* カレンダーセクション */
+        .calendar-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        .day-label { font-weight: bold; padding: 10px; background: #eee; }
+        .day { padding: 15px; border: 1px solid #f0f0f0; position: relative; }
+        .holiday { background: #fff0f0; color: #d32f2f; }
+        .holiday::after { content: "休"; font-size: 0.7rem; display: block; }
+
+        /* お知らせセクション */
+        .news-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            transition: 0.3s;
+        }
+        .news-item:hover { color: var(--moss-green); }
+        .news-date { width: 120px; color: #888; }
+
+        /* 治療内容グリッド (8種類) */
+        .treatment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .treatment-card {
+            background: #fff;
+            border: 1px solid #eee;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--dark-brown);
+        }
+
+        .treatment-img {
+            width: 100%;
+            height: 150px;
+            background-color: #ddd; /* 実際は画像 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .treatment-card h3 {
+            padding: 15px;
+            font-size: 1rem;
+            text-align: center;
+            background: var(--shikkui-white);
+        }
+
+        /* 医院の様子・代表挨拶ボタン */
+        .about-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .btn-large {
+            display: block;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--dark-brown);
+            background: var(--dark-brown);
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .btn-large:hover {
+            background: #fff;
+            color: var(--dark-brown);
+        }
+
+        /* フッター */
+        footer {
+            background: var(--dark-brown);
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; flex-direction: column; }
+            nav ul { margin-top: 10px; }
+            .about-links { grid-template-columns: 1fr; }
+            .hero-copy { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">古民家歯科 〇〇医院</div>
+    <nav>
+        <ul>
+            <li><a href="#news">お知らせ</a></li>
+            <li><a href="#treatment">治療内容</a></li>
+            <li><a href="#about">医院紹介</a></li>
+            <li><a href="#contact">アクセス</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-copy">
+        二〇〇年の時が<br>
+        癒す、歯の悩み。
+    </div>
+</section>
+
+<div class="container">
+    <section id="calendar" style="margin-bottom: 100px;">
+        <h2>診療カレンダー</h2>
+        <div class="calendar-box">
+            <p>2024年 5月</p>
+            <div class="calendar-grid">
+                <div class="day-label">日</div><div class="day-label">月</div><div class="day-label">火</div><div class="day-label">水</div><div class="day-label">木</div><div class="day-label">金</div><div class="day-label">土</div>
+                <div class="day holiday">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+                <div class="day holiday">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day holiday">13</div><div class="day">14</div>
+                <div class="day holiday">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">※赤色は休診日です。WEB予約は24時間受付中。</p>
+        </div>
+    </section>
+
+    <section id="news" style="margin-bottom: 100px;">
+        <h2>お知らせ</h2>
+        <a href="news-detail.html" class="news-item">
+            <div class="news-date">2024.04.20</div>
+            <div class="news-title">ゴールデンウィークの休診について</div>
+        </a>
+        <a href="news-detail.html" class="news-item">
+            <div class="news-date">2024.04.01</div>
+            <div class="news-title">築200年を記念した内覧会を開催いたします</div>
+        </a>
+        <div style="text-align: right; margin-top: 10px;"><a href="news-list.html" style="font-size: 0.8rem; border-bottom: 1px solid #888;">一覧を見る</a></div>
+    </section>
+
+    <section id="treatment" style="margin-bottom: 100px;">
+        <h2>治療のご案内</h2>
+        <div class="treatment-grid">
+            <a href="t1.html" class="treatment-card"><div class="treatment-img">一般歯科</div><h3>一般歯科</h3></a>
+            <a href="t2.html" class="treatment-card"><div class="treatment-img">予防歯科</div><h3>予防歯科</h3></a>
+            <a href="t3.html" class="treatment-card"><div class="treatment-img">小児歯科</div><h3>小児歯科</h3></a>
+            <a href="t4.html" class="treatment-card"><div class="treatment-img">歯周病治療</div><h3>歯周病治療</h3></a>
+            <a href="t5.html" class="treatment-card"><div class="treatment-img">インプラント</div><h3>インプラント</h3></a>
+            <a href="t6.html" class="treatment-card"><div class="treatment-img">ホワイトニング</div><h3>ホワイトニング</h3></a>
+            <a href="t7.html" class="treatment-card"><div class="treatment-img">入れ歯</div><h3>入れ歯</h3></a>
+            <a href="t8.html" class="treatment-card"><div class="treatment-img">矯正歯科</div><h3>矯正歯科</h3></a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-links">
+            <a href="gallery.html" class="btn-large">医院の様子（写真帖）</a>
+            <a href="greeting.html" class="btn-large">代表挨拶と想い</a>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>© 古民家歯科 〇〇医院 All Rights Reserved.</p>
+    <p style="font-size: 0.8rem; margin-top: 10px;">〒000-0000 〇〇県〇〇市 古民家123番地</p>
+</footer>
+
+</body>
+</html>
