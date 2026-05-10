@@ -1,189 +1,322 @@
 import React from "react";
-import { Phone, MapPin, Clock, CalendarDays, ChevronRight, Home, Heart, ShieldCheck } from "lucide-react";
+import {
+  Phone,
+  MapPin,
+  Clock,
+  CalendarDays,
+  ChevronRight,
+  Bell,
+  ShieldCheck,
+  Moon,
+  Smile,
+  Dumbbell,
+  Activity,
+  HeartPulse,
+  Home,
+  Stethoscope,
+  Navigation,
+} from "lucide-react";
 
-const features = [
-  {
-    icon: Home,
-    title: "落ち着いた古民家の医院",
-    text: "築200年の建物を活かした、気取らず通いやすい空間です。",
-  },
-  {
-    icon: Heart,
-    title: "地域に根ざした診療",
-    text: "近くに住む方が安心して相談できる、身近な歯科医院を目指しています。",
-  },
+const newsList = [
+  { date: "2024.05.01", label: "お知らせ", text: "ホームページをリニューアルしました。" },
+  { date: "2024.04.15", label: "休診情報", text: "休診日のお知らせ" },
+  { date: "2024.03.01", label: "お知らせ", text: "診療時間のご案内" },
+];
+
+const medicalMenus = [
   {
     icon: ShieldCheck,
-    title: "分かりやすく丁寧に",
-    text: "治療内容をきちんとお伝えし、不安を減らしながら進めます。",
+    title: "予防歯科",
+    text: "お口の健康を守るため、定期検診やクリーニングでむし歯・歯周病を予防します。",
+  },
+  {
+    icon: Moon,
+    title: "いびき外来",
+    text: "いびきや睡眠時無呼吸症候群でお悩みの方に、マウスピースによる治療をご提案します。",
+  },
+  {
+    icon: Smile,
+    title: "虫歯治療",
+    text: "できるだけ削らない・痛みの少ない治療を心がけ、丁寧に治療を行います。",
+  },
+  {
+    icon: Dumbbell,
+    title: "スポーツマウスガード",
+    text: "スポーツ時の歯やお口のケガを防ぐマウスガードを作製します。",
+  },
+  {
+    icon: Activity,
+    title: "神経の治療",
+    text: "歯の神経まで進んだ虫歯に対して、歯を残すための治療を行います。",
+  },
+  {
+    icon: HeartPulse,
+    title: "入れ歯治療",
+    text: "しっかり噛めて使いやすい入れ歯を、患者さまに合わせてご提案します。",
+  },
+  {
+    icon: Home,
+    title: "訪問診療",
+    text: "通院が難しい方のご自宅や施設へお伺いし、歯科診療や口腔ケアを行います。",
+  },
+  {
+    icon: Stethoscope,
+    title: "インプラント診療",
+    text: "失った歯の機能を取り戻すインプラント治療を、丁寧なカウンセリングのもと行います。",
   },
 ];
 
-export default function MagoshiDentalMockup() {
+export default function MagoshiDentalRenewal() {
   return (
-    <div className="min-h-screen bg-[#f8f4ea] text-[#2f332d] font-sans">
-      <header className="border-b border-[#d8cdb8] bg-[#f8f4ea]">
-        <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+    <div className="min-h-screen bg-[#f8f4ea] text-[#263025] font-sans">
+      <header className="bg-white/95 border-b border-[#e2d8c4] sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between gap-6">
           <div>
-            <p className="text-xs tracking-[0.2em] text-[#5f6f57] mb-1">
-              地域に寄り添う歯科医院
-            </p>
-            <h1 className="text-3xl font-bold">馬越歯科医院</h1>
+            <p className="text-xs tracking-[0.18em] text-[#4f6848] mb-1">医療法人録屋</p>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-wide text-[#143d25]">馬越歯科医院</h1>
           </div>
 
-          <div className="hidden md:flex gap-6 text-sm">
-            <a href="#">当院について</a>
-            <a href="#">診療案内</a>
-            <a href="#">初めての方へ</a>
-            <a href="#">アクセス</a>
+          <nav className="hidden lg:flex gap-7 text-sm font-medium">
+            <a href="#news" className="hover:text-[#4f6848]">お知らせ</a>
+            <a href="#medical" className="hover:text-[#4f6848]">診療案内</a>
+            <a href="#about" className="hover:text-[#4f6848]">当院について</a>
+            <a href="#access" className="hover:text-[#4f6848]">アクセス</a>
+          </nav>
+
+          <div className="hidden md:flex items-center gap-2 text-[#1f4d2e] font-bold text-xl">
+            <Phone size={20} />
+            <span>086-455-9353</span>
           </div>
         </div>
       </header>
 
-      <section className="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <p className="inline-block px-4 py-2 rounded-full bg-[#e5ecdf] text-[#4d6842] text-sm mb-6">
-            築200年の古民家で、落ち着いて通える歯医者さん
-          </p>
+      <main>
+        <section className="relative overflow-hidden bg-[#f6f0e5]">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[42%_58%] min-h-[680px]">
+            <div className="relative z-20 px-5 lg:pl-5 py-14 lg:py-20 flex items-center">
+              <div className="max-w-md">
+                <p className="text-sm text-[#4f6848] tracking-[0.14em] mb-5">築200年の古民家で、落ち着いて通える歯医者さん</p>
 
-          <h2 className="text-5xl leading-tight font-bold mb-6">
-            いつもの町で、
-            <br />
-            いつもの安心を。
-          </h2>
+                <h2 className="text-4xl md:text-5xl leading-[1.35] font-semibold tracking-wide text-[#173a25] mb-7">
+                  地域に寄り添う<br />歯科医院
+                </h2>
 
-          <p className="text-[#555f4f] leading-8 mb-8">
-            馬越歯科医院は、地域の皆さまのお口の健康を支える歯科医院です。
-            小さなお悩みも相談しやすい、あたたかな診療を大切にしています。
-          </p>
+                <p className="leading-8 text-[#4d5549] mb-8">
+                  馬越歯科医院は、地域の皆さまのお口の健康を支える歯科医院です。
+                  小さなお悩みも相談しやすい、あたたかな診療を大切にしています。
+                </p>
 
-          <div className="flex flex-wrap gap-3 mb-10">
-            <button className="bg-[#1f5e85] text-white px-6 py-4 rounded-lg flex items-center gap-2">
-              <Phone size={18} />
-              お電話でのお問い合わせ
-            </button>
+                <div className="space-y-2 mb-8 text-[#30362e]">
+                  <p>〒712-8046</p>
+                  <p>倉敷市福田町古新田238</p>
+                  <p className="text-3xl font-bold tracking-[0.12em] flex items-center gap-2 pt-3">
+                    <Phone size={26} />
+                    086-455-9353
+                  </p>
+                </div>
 
-            <button className="border border-[#cbbd9f] bg-white px-6 py-4 rounded-lg flex items-center gap-2">
-              <MapPin size={18} />
-              アクセスを見る
-            </button>
-          </div>
-        </div>
-
-        <div className="space-y-5">
-          <div className="rounded-2xl overflow-hidden shadow-md border border-[#d7cbb6]">
-            <img
-              src="https://images.unsplash.com/photo-1629909615184-74f495363b67?q=80&w=1200&auto=format&fit=crop"
-              alt="歯科医院"
-              className="w-full h-[340px] object-cover"
-            />
-          </div>
-
-          <div className="bg-white rounded-2xl border border-[#d7cbb6] p-6 shadow-sm">
-            <div className="flex items-center gap-2 mb-4 text-[#1f5e85] font-semibold">
-              <CalendarDays size={20} />
-              <h3>診療時間</h3>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a className="bg-[#42623a] text-white rounded-md px-6 py-4 font-semibold flex items-center justify-center gap-2 shadow-sm">
+                    <Phone size={18} />
+                    お電話でのお問い合わせ
+                  </a>
+                  <a href="#access" className="bg-white border border-[#42623a] text-[#25452d] rounded-md px-6 py-4 font-semibold flex items-center justify-center gap-2">
+                    <MapPin size={18} />
+                    アクセスを見る
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <table className="w-full text-sm border-collapse text-center">
-              <thead>
-                <tr className="bg-[#f1ebde]">
-                  <th className="border border-[#ddd2bd] py-2">時間</th>
-                  <th className="border border-[#ddd2bd]">月</th>
-                  <th className="border border-[#ddd2bd]">火</th>
-                  <th className="border border-[#ddd2bd]">水</th>
-                  <th className="border border-[#ddd2bd]">木</th>
-                  <th className="border border-[#ddd2bd]">金</th>
-                  <th className="border border-[#ddd2bd]">土</th>
-                </tr>
-              </thead>
+            <div className="relative min-h-[520px] lg:min-h-full">
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center" />
+              <div className="absolute inset-0 bg-black/10" />
 
-              <tbody>
-                <tr>
-                  <td className="border border-[#ddd2bd] py-3 font-semibold">午前</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                </tr>
+              <div className="absolute left-5 right-5 bottom-8 lg:left-auto lg:right-8 lg:w-[560px] bg-white/95 rounded-xl border border-[#d9cdb7] shadow-xl p-5">
+                <div className="flex items-center gap-2 mb-4 font-bold text-[#263025]">
+                  <CalendarDays size={20} />
+                  <h3>診療時間</h3>
+                </div>
 
-                <tr>
-                  <td className="border border-[#ddd2bd] py-3 font-semibold">午後</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">―</td>
-                  <td className="border border-[#ddd2bd]">○</td>
-                  <td className="border border-[#ddd2bd]">―</td>
-                </tr>
-              </tbody>
-            </table>
+                <table className="w-full text-center text-sm border-collapse overflow-hidden rounded-lg">
+                  <thead>
+                    <tr className="bg-[#a7a7a7] text-white">
+                      <th className="border border-white/60 py-3 w-[34%]">診療時間</th>
+                      <th className="border border-white/60">月</th>
+                      <th className="border border-white/60">火</th>
+                      <th className="border border-white/60">水</th>
+                      <th className="border border-white/60">木</th>
+                      <th className="border border-white/60">金</th>
+                      <th className="border border-white/60">土</th>
+                      <th className="border border-white/60">日</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-[#f2f2f2]">
+                    <tr>
+                      <td className="border border-white py-4 font-semibold">9:00〜12:00</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white text-xs leading-5">訪問<br />診療</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">―</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-white py-4 font-semibold">14:00〜18:30</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white">―</td>
+                      <td className="border border-white">○</td>
+                      <td className="border border-white text-xs leading-5">○<br />〜18:00</td>
+                      <td className="border border-white">―</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div className="mt-4 text-sm text-[#5c6258] leading-7">
-              <p className="flex items-center gap-2">
-                <Clock size={15} />
-                午前 9:00〜12:30 ／ 午後 14:30〜18:30
+        <section id="news" className="bg-white py-12 border-y border-[#eee5d6]">
+          <div className="max-w-6xl mx-auto px-5">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <Bell size={22} className="text-[#42623a]" />
+                <h2 className="text-2xl font-bold">お知らせ</h2>
+              </div>
+              <a className="hidden sm:flex items-center gap-2 text-sm border border-[#e3d8c6] rounded-full px-5 py-3">
+                お知らせ一覧を見る <ChevronRight size={16} />
+              </a>
+            </div>
+
+            <div className="divide-y divide-[#eee5d6]">
+              {newsList.map((news, index) => (
+                <div key={index} className="grid md:grid-cols-[120px_96px_1fr] gap-3 py-4 text-sm md:text-base items-center">
+                  <p className="text-[#6b6f66]">{news.date}</p>
+                  <p className="w-fit bg-[#efe8d8] rounded-full px-4 py-1 text-xs text-[#5c523f]">{news.label}</p>
+                  <p>{news.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="medical" className="py-16 bg-[#fbf8f1]">
+          <div className="max-w-6xl mx-auto px-5">
+            <div className="text-center mb-10">
+              <p className="text-sm tracking-[0.24em] text-[#6a775e] mb-3">MEDICAL MENU</p>
+              <h2 className="text-3xl font-bold">診療案内</h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {medicalMenus.map((menu, index) => {
+                const Icon = menu.icon;
+                return (
+                  <article key={index} className="bg-white rounded-xl border border-[#e1d6c3] p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-14 h-14 rounded-full bg-[#edf3e7] mx-auto mb-4 flex items-center justify-center text-[#42623a]">
+                      <Icon size={28} />
+                    </div>
+                    <h3 className="font-bold text-lg mb-3">{menu.title}</h3>
+                    <p className="text-sm leading-7 text-[#555d52] text-left">{menu.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="bg-white py-16">
+          <div className="max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-12 items-center">
+            <div className="rounded-2xl overflow-hidden border-8 border-[#f2eadb] shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1400&auto=format&fit=crop"
+                alt="診療室"
+                className="w-full h-[360px] object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="text-sm tracking-[0.24em] text-[#6a775e] mb-3">ABOUT US</p>
+              <h2 className="text-3xl md:text-4xl leading-[1.45] font-bold mb-6">
+                大きすぎず、気取らず、<br />相談しやすい歯科医院です。
+              </h2>
+              <p className="leading-8 text-[#555d52] mb-7">
+                築200年の古民家を活かした、落ち着きのある空間で診療を行っています。
+                患者さま一人ひとりに寄り添い、丁寧な説明と安心できる治療を心がけています。
+                小さなことでもお気軽にご相談ください。
               </p>
-              <p>休診日：木曜午後・土曜午後・日曜・祝日</p>
+              <a className="inline-flex items-center gap-2 bg-[#42623a] text-white rounded-md px-7 py-4 font-semibold">
+                当院について詳しく見る <ChevronRight size={18} />
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="max-w-6xl mx-auto px-5 py-10 grid md:grid-cols-3 gap-5">
-        {features.map((feature, index) => {
-          const Icon = feature.icon;
+        <section id="access" className="py-16 bg-[#f6f0e5]">
+          <div className="max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="text-sm tracking-[0.24em] text-[#6a775e] mb-3">ACCESS</p>
+              <h2 className="text-3xl font-bold mb-7">アクセス</h2>
 
-          return (
-            <div
-              key={index}
-              className="bg-white rounded-2xl border border-[#ddd2bd] p-7 shadow-sm"
-            >
-              <Icon className="text-[#5f6f57] mb-4" size={34} />
+              <div className="bg-white rounded-2xl border border-[#e1d6c3] p-7 shadow-sm space-y-5">
+                <div className="flex gap-4">
+                  <MapPin className="text-[#42623a] shrink-0" />
+                  <div>
+                    <h3 className="font-bold mb-1">住所</h3>
+                    <p>〒712-8046<br />倉敷市福田町古新田238</p>
+                  </div>
+                </div>
 
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <div className="flex gap-4">
+                  <Phone className="text-[#42623a] shrink-0" />
+                  <div>
+                    <h3 className="font-bold mb-1">電話番号</h3>
+                    <p className="text-2xl font-bold tracking-[0.1em]">086-455-9353</p>
+                  </div>
+                </div>
 
-              <p className="text-[#5b6258] leading-7">{feature.text}</p>
+                <div className="flex gap-4">
+                  <Navigation className="text-[#42623a] shrink-0" />
+                  <div>
+                    <h3 className="font-bold mb-1">お車でお越しの方</h3>
+                    <p>駐車場をご利用いただけます。</p>
+                  </div>
+                </div>
+
+                <a className="inline-flex items-center gap-2 border border-[#42623a] rounded-md px-6 py-3 font-semibold text-[#25452d]">
+                  Googleマップで見る <ChevronRight size={18} />
+                </a>
+              </div>
             </div>
-          );
-        })}
-      </section>
 
-      <section className="bg-[#ebe3d2] py-16 mt-10">
-        <div className="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 items-center">
-          <div className="rounded-2xl overflow-hidden shadow-md border-8 border-white">
-            <img
-              src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1200&auto=format&fit=crop"
-              alt="医院内観"
-              className="w-full h-[320px] object-cover"
-            />
+            <div className="bg-white rounded-2xl border border-[#e1d6c3] p-5 shadow-sm">
+              <div className="aspect-[4/3] rounded-xl bg-[#e6e0d3] flex items-center justify-center text-[#6d6a61]">
+                Google Map 表示エリア
+              </div>
+            </div>
           </div>
+        </section>
+      </main>
 
+      <footer className="bg-[#3b2f26] text-white py-10">
+        <div className="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-8">
           <div>
-            <p className="text-sm tracking-[0.25em] text-[#6b765e] mb-3">
-              ABOUT US
-            </p>
+            <p className="text-sm text-[#d5c7b4] mb-1">医療法人録屋</p>
+            <h2 className="text-2xl font-bold mb-3">馬越歯科医院</h2>
+            <p className="text-sm text-[#d5c7b4]">〒712-8046 倉敷市福田町古新田238</p>
+            <p className="text-xl font-bold mt-3">086-455-9353</p>
+          </div>
 
-            <h2 className="text-4xl leading-tight font-bold mb-6">
-              大きすぎず、気取らず、
-              <br />
-              相談しやすい歯科医院です。
-            </h2>
-
-            <p className="leading-8 text-[#525a4d] mb-6">
-              こじんまりとした医院だからこそ、一人ひとりのお話を丁寧に伺いながら診療を行っています。
-              派手さよりも、分かりやすさと安心感を大切にしたサイト構成にしています。
-            </p>
-
-            <button className="bg-[#5f6f57] text-white px-6 py-4 rounded-lg inline-flex items-center gap-2">
-              当院について
-              <ChevronRight size={18} />
-            </button>
+          <div className="flex gap-6 text-sm text-[#d5c7b4]">
+            <a>お知らせ</a>
+            <a>診療案内</a>
+            <a>当院について</a>
+            <a>アクセス</a>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
