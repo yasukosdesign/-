@@ -1,270 +1,151 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>馬越歯科医院 | この街に寄り添い、あなたの笑顔をずっと守りたい。</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- アイコン用のフォント読み込み -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #fdfaf5;
-            --main-brown: #5d4037;
-            --accent-green: #8da05e;
-            --text-black: #333;
-            --white: #ffffff;
-            --soft-gray: #f8f9fa;
-        }
+import React from "react";
+import { Phone, MapPin, Clock, CalendarDays, ChevronRight, Home, Heart, ShieldCheck } from "lucide-react";
 
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-black);
-            margin: 0;
-            line-height: 1.8;
-        }
-
-        h1, h2, h3 { font-family: 'Noto Serif JP', serif; }
-
-        /* ヘッダー */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .logo { font-size: 1.4rem; font-weight: bold; color: var(--main-brown); letter-spacing: 0.1em; }
-        nav ul { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
-        nav ul li a { text-decoration: none; color: var(--text-black); font-size: 0.9rem; font-weight: 500; }
-
-        /* ファーストビュー */
-        .hero {
-            height: 700px;
-            background: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            padding: 0 8%;
-        }
-
-        .hero-copy {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 80px 0 80px 0;
-            max-width: 500px;
-            z-index: 2;
-        }
-
-        .hero-copy h2 {
-            font-size: 1.8rem;
-            color: var(--main-brown);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        /* 診療カレンダー（ファーストビュー内） */
-        .hero-calendar {
-            position: absolute;
-            bottom: 50px;
-            right: 8%;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 2;
-            width: 450px;
-        }
-
-        .calendar-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            color: var(--main-brown);
-            font-weight: bold;
-        }
-
-        .time-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-
-        .time-table th, .time-table td {
-            padding: 8px 4px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .time-table th { font-weight: normal; color: #888; }
-        .time-table .circle { color: var(--accent-green); font-size: 1.1rem; }
-        .time-table .dash { color: #ccc; }
-
-        /* 診療案内（アイコン） */
-        .treatment-section {
-            padding: 100px 5%;
-            background-color: var(--white);
-            text-align: center;
-        }
-
-        .section-title h2 { font-size: 2rem; margin-bottom: 50px; color: var(--main-brown); }
-
-        .treatment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .treatment-card {
-            background: var(--soft-gray);
-            border: 1px solid #f0f0f0;
-            padding: 40px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .treatment-card:hover {
-            transform: translateY(-5px);
-            background: var(--white);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-color: var(--accent-green);
-        }
-
-        .treatment-card i {
-            font-size: 2.5rem;
-            color: var(--main-brown);
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .treatment-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            color: var(--main-brown);
-        }
-
-        .arrow-btn {
-            width: 30px;
-            height: 30px;
-            background: var(--accent-green);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        footer {
-            background: var(--main-brown);
-            color: var(--white);
-            padding: 40px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero { height: auto; flex-direction: column; padding: 40px 5%; }
-            .hero-copy { border-radius: 40px 0; margin-bottom: 20px; }
-            .hero-calendar { position: static; width: 100%; box-sizing: border-box; }
-            .treatment-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="logo">馬越歯科医院</div>
-    <nav>
-        <ul>
-            <li><a href="#">当院について</a></li>
-            <li><a href="#">診療案内</a></li>
-            <li><a href="#">アクセス</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-    <section class="hero">
-        <div class="hero-copy">
-            <h2>この街に寄り添い、<br>あなたの笑顔をずっと守りたい。</h2>
+export default function MagoshiDentalMockup() {
+  return (
+    <div className="min-h-screen bg-[#f8f4ea] text-[#2f332d]">
+      <header className="bg-[#f8f4ea]/95 border-b border-[#d8cdb8] sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+          <div>
+            <p className="text-xs tracking-[0.25em] text-[#5f6f57]">地域に寄り添う歯科医院</p>
+            <h1 className="text-2xl font-semibold tracking-wide">馬越歯科医院</h1>
+          </div>
+          <nav className="hidden md:flex gap-7 text-sm text-[#3f4939]">
+            <a>当院について</a>
+            <a>診療案内</a>
+            <a>初めての方へ</a>
+            <a>アクセス</a>
+          </nav>
+          <div className="hidden md:flex items-center gap-2 text-[#1f5e85] font-semibold">
+            <Phone size={18} />
+            <span>086-000-0000</span>
+          </div>
         </div>
+      </header>
 
-        <div class="hero-calendar">
-            <div class="calendar-title">
-                <span>診療時間</span>
-                <span>月 火 水 木 金 土 日 祝</span>
+      <main>
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#f8f4ea_0%,#f8f4ea_52%,rgba(248,244,234,0.2)_100%)] z-10" />
+          <div className="absolute right-0 top-0 w-1/2 h-full bg-[#d8cdb8]">
+            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1400&auto=format&fit=crop')] bg-cover bg-center opacity-75" />
+          </div>
+
+          <div className="relative z-20 max-w-6xl mx-auto px-5 py-16 md:py-24 grid md:grid-cols-[1fr_380px] gap-10 items-center">
+            <div className="max-w-xl">
+              <p className="inline-block bg-[#e6f0e1] border border-[#c5d6bc] rounded-full px-4 py-2 text-sm text-[#4d6842] mb-6">
+                築200年の古民家で、落ち着いて通える歯医者さん
+              </p>
+              <h2 className="text-4xl md:text-5xl leading-[1.35] font-semibold tracking-wide mb-6">
+                いつもの町で、<br />いつもの安心を。
+              </h2>
+              <p className="text-base md:text-lg leading-8 text-[#555f4f] mb-8">
+                馬越歯科医院は、地域の皆さまのお口の健康を支える歯科医院です。
+                小さなお悩みも相談しやすい、あたたかな診療を大切にしています。
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-[#1f5e85] text-white rounded-md px-6 py-4 font-semibold flex items-center justify-center gap-2 shadow-sm">
+                  お電話でのお問い合わせ <ChevronRight size={18} />
+                </button>
+                <button className="bg-white border border-[#cbbd9f] rounded-md px-6 py-4 font-semibold flex items-center justify-center gap-2">
+                  アクセスを見る <MapPin size={18} />
+                </button>
+              </div>
             </div>
-            <table class="time-table">
-                <tr>
-                    <td>9:00 - 12:30</td>
-                    <td class="circle">○</td><td class="circle">○</td><td class="circle">○</td><td class="dash">ー</td>
-                    <td class="circle">○</td><td class="circle">○</td><td class="dash">ー</td><td class="dash">ー</td>
-                </tr>
-                <tr>
-                    <td>15:00 - 19:30</td>
-                    <td class="circle">○</td><td class="circle">○</td><td class="circle">○</td><td class="dash">ー</td>
-                    <td class="circle">○</td><td class="circle">△</td><td class="dash">ー</td><td class="dash">ー</td>
-                </tr>
-            </table>
-            <p style="font-size: 0.7rem; margin-top: 10px; color: #888;">※土曜午後は14:00〜16:00 / 木・日・祝は休診</p>
-        </div>
-    </section>
 
-    <section class="treatment-section">
-        <div class="section-title">
-            <h2>診療案内</h2>
-        </div>
-        <div class="treatment-grid">
-            <a href="#" class="treatment-card">
-                <i class="fa-solid fa-tooth"></i>
-                <h3>一般歯科</h3>
-                <div class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
-            <a href="#" class="treatment-card">
-                <i class="fa-solid fa-child"></i>
-                <h3>小児歯科</h3>
-                <div class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
-            <a href="#" class="treatment-card">
-                <i class="fa-solid fa-sparkles"></i>
-                <h3>ホワイトニング</h3>
-                <div class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
-            <a href="#" class="treatment-card">
-                <i class="fa-solid fa-shield-heart"></i>
-                <h3>予防歯科</h3>
-                <div class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
-            <a href="#" class="treatment-card">
-                <i class="fa-solid fa-牙"></i>
-                <h3>入れ歯</h3>
-                <div class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
-        </div>
-    </section>
-</main>
+            <div className="bg-white/95 rounded-xl border border-[#d5c7ac] shadow-lg p-5">
+              <div className="flex items-center gap-2 mb-4 text-[#1f5e85] font-semibold">
+                <CalendarDays size={20} />
+                <h3>診療時間</h3>
+              </div>
+              <table className="w-full text-center border-collapse text-sm overflow-hidden rounded-lg">
+                <thead>
+                  <tr className="bg-[#f0eadc] text-[#4b5145]">
+                    <th className="py-3 border border-[#ddd2bd]">時間</th>
+                    <th className="py-3 border border-[#ddd2bd]">月</th>
+                    <th className="py-3 border border-[#ddd2bd]">火</th>
+                    <th className="py-3 border border-[#ddd2bd]">水</th>
+                    <th className="py-3 border border-[#ddd2bd]">木</th>
+                    <th className="py-3 border border-[#ddd2bd]">金</th>
+                    <th className="py-3 border border-[#ddd2bd]">土</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="py-3 border border-[#ddd2bd] font-semibold">午前</td>
+                    <td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 border border-[#ddd2bd] font-semibold">午後</td>
+                    <td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">—</td><td className="border border-[#ddd2bd]">○</td><td className="border border-[#ddd2bd]">—</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="mt-4 text-sm leading-7 text-[#5c6258]">
+                <p className="flex items-center gap-2"><Clock size={15} /> 午前 9:00〜12:30 ／ 午後 14:30〜18:30</p>
+                <p>休診日：木曜午後・土曜午後・日曜・祝日</p>
+                <p className="text-xs text-[#867b69] mt-2">※提案用の仮情報です。正式な診療時間に差し替えます。</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<footer>
-    <p>© Umakoshi Dental Clinic. All Rights Reserved.</p>
-</footer>
+        <section className="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-3 gap-5">
+          {[
+            { icon: Home, title: "落ち着いた古民家の医院", text: "築200年の建物を活かした、気取らず通いやすい空間です。" },
+            { icon: Heart, title: "地域に根ざした診療", text: "近くに住む方が安心して相談できる、身近な歯科医院を目指しています。" },
+            { icon: ShieldCheck, title: "分かりやすく丁寧に", text: "治療内容をきちんとお伝えし、不安を減らしながら進めます。" },
+          ].map((item, i) => (
+            <div key={i} className="bg-white rounded-xl border border-[#ded3bd] p-7 shadow-sm">
+              <item.icon className="text-[#5f6f57] mb-4" size={34} />
+              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+              <p className="text-[#5b6258] leading-7">{item.text}</p>
+            </div>
+          ))}
+        </section>
 
-</body>
-</html>
+        <section className="bg-[#ebe3d2] py-16">
+          <div className="max-w-6xl mx-auto px-5 grid md:grid-cols-[420px_1fr] gap-10 items-center">
+            <div className="rounded-xl overflow-hidden border-8 border-white shadow-md bg-[#d8cdb8]">
+              <div className="aspect-[4/3] bg-[url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center opacity-80" />
+            </div>
+            <div>
+              <p className="text-sm tracking-[0.25em] text-[#6b765e] mb-3">ABOUT US</p>
+              <h2 className="text-3xl font-semibold leading-relaxed mb-5">大きすぎず、気取らず、<br />相談しやすい歯科医院です。</h2>
+              <p className="leading-8 text-[#525a4d] mb-6">
+                こじんまりとした医院だからこそ、一人ひとりのお話を丁寧に伺いながら診療を行っています。
+                派手さよりも、分かりやすさと安心感を大切にしたサイト構成にしています。
+              </p>
+              <button className="bg-[#5f6f57] text-white rounded-md px-6 py-3 font-semibold">当院について</button>
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-6xl mx-auto px-5 py-16">
+          <p className="text-sm tracking-[0.25em] text-[#6b765e] mb-3">MEDICAL MENU</p>
+          <h2 className="text-3xl font-semibold mb-8">診療案内</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {["一般歯科", "小児歯科", "予防歯科", "入れ歯の相談"].map((text) => (
+              <div className="bg-white border border-[#ded3bd] rounded-lg p-6 flex items-center justify-between">
+                <span className="font-semibold">{text}</span>
+                <ChevronRight size={18} className="text-[#8a7a5b]" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-[#3f4939] text-white py-12">
+          <div className="max-w-6xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="text-[#d9d0bc] mb-2">お口のことで気になることがありましたら</p>
+              <h2 className="text-2xl font-semibold">まずはお電話でご相談ください。</h2>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-3xl font-bold tracking-wide">086-000-0000</p>
+              <p className="text-sm text-[#d9d0bc]">受付時間：診療日の午前・午後</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
